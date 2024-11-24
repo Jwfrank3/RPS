@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const rock = "rock";
+      const paper = "paper";
+      const scissors = "scissors";
+
+      function computerMove() {
+        let random = Math.random();
+
+        if (random < 0.33) {
+          return rock;
+        } else if (random < 0.66) {
+          return paper;
+        } else if (random < 1) {
+          return scissors;
+        }
+      }
+
+      function playGame(move) {
+        let opponent = computerMove();
+
+        if (move === rock && opponent === scissors) {
+          return console.log("You Win");
+        } else if (move === rock && opponent === paper) {
+          return console.log("You Lose");
+        } else if (move === rock && opponent === rock) {
+          return console.log("Game is Tied");
+        } else if (move === paper && opponent === rock) {
+          return console.log("You Win");
+        } else if (move === paper && opponent === scissors) {
+          return console.log("You Lose");
+        } else if (move === paper && opponent === paper) {
+          return console.log("Game is Tied");
+        } else if (move === scissors && opponent === paper) {
+          return console.log("You Win");
+        } else if (move === scissors && opponent === rock) {
+          return console.log("You Lose");
+        } else if (move === scissors && opponent === scissors) {
+          return console.log("Game is Tied");
+        }
+      }
+    </script>
+  </body>
+</html>
