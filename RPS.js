@@ -6,14 +6,25 @@ let wins = 0;
 let loses = 0;
 let ties = 0;
 
+const rockButton = document.querySelector("#rock");
+const paperButton = document.querySelector("#paper");
+const scissorsButton = document.querySelector("#scissors");
+const result = document.querySelector("div");
+const gameScore = document.querySelector(".score");
+
+rockButton.addEventListener("click", () => playGame(rock));
+paperButton.addEventListener("click", () => playGame(paper));
+scissorsButton.addEventListener("click", () => playGame(scissors));
 
 function score() {
-  if (wins > loses) {
-    console.log(`You Win! wins: ${wins}, loses: ${loses}, ties: ${ties}`);
-  } else if (loses > wins) {
-    console.log(`You lose! wins: ${wins}, loses: ${loses}, ties: ${ties}`);
-  } else if (wins === loses) {
-    console.log(`Tied Game! wins: ${wins}, loses: ${loses}, ties: ${ties}`);
+  if (wins > loses && (wins + loses + ties >= 5)) {
+    gameScore.innerText = `You Win! wins: ${wins}, loses: ${loses}, ties: ${ties}`;
+  } else if (loses > wins && (wins + loses + ties >= 5)) {
+    gameScore.innerText = `You lose! wins: ${wins}, loses: ${loses}, ties: ${ties}`;
+  } else if ((wins === loses) && (ties + wins + loses >= 5)) {
+    gameScore.innerText = `Tied Game! wins: ${wins}, loses: ${loses}, ties: ${ties}`;
+  } else {
+    gameScore.innerText = `wins: ${wins}, loses: ${loses}, ties: ${ties}`;
   }
 }
 
@@ -33,31 +44,31 @@ function playGame(userInput) {
   let opponent = computerMove();
 
   if (userInput === rock && opponent === scissors) {
-    console.log("Rock crushes Scissors");
-    return wins++;
+    result.innerText = "Rock crushes Scissors";
+    return score(wins++);
   } else if (userInput === rock && opponent === paper) {
-    console.log("Rock wrapped by Paper");
-    return loses++;
+    result.innerText = "Rock wrapped by Paper";
+    return score(loses++);
   } else if (userInput === rock && opponent === rock) {
-    console.log("Rock tied with Rock");
-    return ties++;
+    result.innerText = "Rock tied with Rock";
+    return score(ties++);
   } else if (userInput === paper && opponent === rock) {
-    console.log("Paper wraps Rock");
-    return wins++;
+    result.innerText = "Paper wraps Rock";
+    return score(wins++);
   } else if (userInput === paper && opponent === scissors) {
-    console.log("Paper cut by Scissors");
-    return loses++;
+    result.innerText = "Paper cut by Scissors";
+    return score(loses++);
   } else if (userInput === paper && opponent === paper) {
-    console.log("Paper tied with Paper");
-    return ties++;
+    result.innerText = "Paper tied with Paper";
+    return score(ties++);
   } else if (userInput === scissors && opponent === paper) {
-    console.log("scissors cuts Paper");
-    return wins++;
+    result.innerText = "scissors cuts Paper";
+    return score(wins++);
   } else if (userInput === scissors && opponent === rock) {
-    console.log("Scissors crushed by Rock");
-    return loses++;
+    result.innerText = "Scissors crushed by Rock";
+    return score(loses++);
   } else if (userInput === scissors && opponent === scissors) {
-    console.log("Scissors tied with Scissors");
-    return ties++;
+    result.innerText = "Scissors tied with Scissors";
+    return score(ties++);
   }
 }
